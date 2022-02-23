@@ -47,8 +47,28 @@ const post = (model, populate) => async (req, res) => {
 
 const patch = (model, populate) => async (req, res) => {
   try {
+    let pics = [];
+    for (let i = 0; i < req.files?.length || 0; i++) {
+      pics.push(req.files[i].location);
+    }
+
+    if (pics.length === 0) {
+      pics = null;
+    }
+
+    const profilePic = req.file?.location;
+
     const value = await model
-      .findByIdAndUpdate(req.params.id, req.body, { new: true })
+      .findByIdAndUpdate(
+        req.params.id,
+        {
+          ...req.body,
+          profilePic: profilePic,
+          postImgs: pics,
+          commentImgs: pics,
+        },
+        { new: true }
+      )
       .populate(populate)
       .lean()
       .exec();

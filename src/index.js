@@ -2,8 +2,6 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 
-
-
 const qualificationController = require("./controllers/qualification.controller");
 const userController = require("./controllers/user.controller");
 const workExperienceController = require("./controllers/workExperience.controller");
