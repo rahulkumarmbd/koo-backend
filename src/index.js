@@ -1,5 +1,8 @@
 const express = require("express");
 const app = express();
+const fast2sms = require("fast-two-sms");
+const transporter = require("./config/email");
+
 app.use(express.json());
 
 const qualificationController = require("./controllers/qualification.controller");
@@ -8,10 +11,44 @@ const workExperienceController = require("./controllers/workExperience.controlle
 const commentController = require("./controllers/comment.controller");
 const postController = require("./controllers/post.controller");
 
-app.use("/users",userController);
-app.use("/qualifications",qualificationController);
-app.use("/workExperiences",workExperienceController);
-app.use("/comments",commentController);
-app.use("/posts",postController);
+app.use("/users", userController);
+app.use("/qualifications", qualificationController);
+app.use("/workExperiences", workExperienceController);
+app.use("/comments", commentController);
+app.use("/posts", postController);
+
+app.post("/phoneotp", async (req, res) => {
+  try {
+    var options = {
+      authorization: process.env.YOUR_API_KEY,
+      message: req.body.otpMessage,
+      numbers: req.body.mobileNum,
+    };
+    const response = await fast2sms.sendMessage(options);
+    res.status(201).send(response);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+app.post("/gmailotp", (req, res) => {
+  try {
+    const mailOptions = {
+      from: "kooappclone@gmail.com", // sender address
+      to: req.body.email, // list of receivers
+      subject: "Confirm your gmail", // Subject line
+      html: `<h1>Your otp is 4567</h1>`, // plain text body
+    };
+
+    transporter.sendMail(mailOptions, function (err, info) {
+      if (err) console.log(err);
+      else console.log(info);
+    });
+
+    res.status(201).send({success:"success"});
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
 
 module.exports = app;
