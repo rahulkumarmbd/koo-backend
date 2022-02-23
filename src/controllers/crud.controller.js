@@ -29,13 +29,12 @@ const post = (model, populate) => async (req, res) => {
       pics.push(req.files[i].location);
     }
     const pic =
-      req.file?.location || pics.length
-        ? pics
-        : null || "https://i.postimg.cc/MTw0t80t/pngegg-1.png";
+      pics.length != 0 ? pics : "https://i.postimg.cc/MTw0t80t/pngegg-1.png";
+    const profilePic = req.file?.location;
 
     const value = await model.create({
       ...req.body,
-      profilePic: pic,
+      profilePic: profilePic,
       postImgs: pic,
       commentImgs: pic,
     });
