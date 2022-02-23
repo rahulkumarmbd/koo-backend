@@ -25,7 +25,7 @@ const getOne = (model, populate) => async (req, res) => {
 const post = (model, populate) => async (req, res) => {
   try {
     const pics = [];
-    for (let i = 0; i < req.files.length || 0; i++) {
+    for (let i = 0; i < req.files?.length || 0; i++) {
       pics.push(req.files[i].location);
     }
     const pic =
