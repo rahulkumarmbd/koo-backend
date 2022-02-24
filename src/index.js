@@ -48,8 +48,8 @@ app.post("/gmailotp", (req, res) => {
     const mailOptions = {
       from: "kooappclone@gmail.com", // sender address
       to: req.body.email, // list of receivers
-      subject: "Confirm your gmail", // Subject line
-      html: `<h1>Your otp is ${otp}</h1>`, // plain text body
+      subject: "Confirm your gmail account", // Subject line
+      html: `<h1>Dear Customer your otp is ${otp}. Please Don't Share with anyone</h1>`, // plain text body
     };
 
     transporter.sendMail(mailOptions, function (err, info) {
