@@ -33,11 +33,17 @@ app.post("/phoneotp", async (req, res) => {
 
 app.post("/gmailotp", (req, res) => {
   try {
+    function random(Number) {
+      return Math.round(Number * Math.random());
+    }
+
+    const otp = random(1000000);
+
     const mailOptions = {
       from: "kooappclone@gmail.com", // sender address
       to: req.body.email, // list of receivers
       subject: "Confirm your gmail", // Subject line
-      html: `<h1>Your otp is 4567</h1>`, // plain text body
+      html: `<h1>Your otp is ${otp}</h1>`, // plain text body
     };
 
     transporter.sendMail(mailOptions, function (err, info) {
@@ -45,7 +51,7 @@ app.post("/gmailotp", (req, res) => {
       else console.log(info);
     });
 
-    res.status(201).send({success:"success"});
+    res.status(201).send({ success: "success", otp });
   } catch (err) {
     res.status(500).send(err);
   }
