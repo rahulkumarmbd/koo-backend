@@ -4,6 +4,9 @@ const fast2sms = require("fast-two-sms");
 const transporter = require("./config/email");
 
 app.use(express.json());
+const cors = require("cors");
+
+app.use(cors());
 
 const qualificationController = require("./controllers/qualification.controller");
 const userController = require("./controllers/user.controller");
@@ -31,7 +34,7 @@ app.post("/phoneotp", async (req, res) => {
       numbers: [`${req.body.mobileNum}`],
     };
     const response = await fast2sms.sendMessage(options);
-    res.status(201).send({response,otp});
+    res.status(201).send({ response, otp });
   } catch (err) {
     res.status(500).send(err);
   }
