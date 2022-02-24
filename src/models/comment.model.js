@@ -27,8 +27,3 @@ const commentSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model("comment", commentSchema);
-
-
-// comment => Comment create => comment id only
-// next step => post update(patch)
-// next step => user Update(patch)
