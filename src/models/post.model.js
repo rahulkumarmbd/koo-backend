@@ -6,25 +6,9 @@ const postSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    profession: {
-      type: String,
-      required: false,
-    },
-    handle: {
-      type: String,
-      required: false,
-    },
-    userName: {
-      type: String,
-      required: false,
-    },
-    userPic: {
-      type: String,
-      required: true,
-    },
     description: {
       type: String,
-      required: true,
+      required: false,
     },
     postImgs: [
       {

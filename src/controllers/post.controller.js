@@ -2,7 +2,7 @@ const Post = require("../models/post.model");
 const express = require("express");
 const crudController = require("./crud.controller");
 const router = express.Router();
-const populate = "comments";
+const populate = "comments userId";
 const { uploadFiles } = require("../middlewares/multer");
 
 router.get("/", crudController(Post, populate).get);
