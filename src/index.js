@@ -27,7 +27,7 @@ app.post("/phoneotp", async (req, res) => {
 
     var options = {
       authorization: process.env.YOUR_API_KEY,
-      message: otp,
+      message: `Dear Customer your otp is ${otp}. Please Don't Share with anyone`,
       numbers: [`${req.body.mobileNum}`],
     };
     const response = await fast2sms.sendMessage(options);
