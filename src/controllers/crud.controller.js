@@ -53,7 +53,7 @@ const patch = (model, populate) => async (req, res) => {
     }
 
     if (pics.length === 0) {
-      pics = null;
+      pics = undefined;
     }
 
     const profilePic = req.file?.location;
