@@ -19,13 +19,19 @@ app.use("/posts", postController);
 
 app.post("/phoneotp", async (req, res) => {
   try {
+    function random(Number) {
+      return Math.round(Number * Math.random());
+    }
+
+    const otp = random(1000000);
+
     var options = {
       authorization: process.env.YOUR_API_KEY,
-      message: req.body.otpMessage,
-      numbers: req.body.mobileNum,
+      message: otp,
+      numbers: [`${req.body.mobileNum}`],
     };
     const response = await fast2sms.sendMessage(options);
-    res.status(201).send(response);
+    res.status(201).send({response,otp});
   } catch (err) {
     res.status(500).send(err);
   }
