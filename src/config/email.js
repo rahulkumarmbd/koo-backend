@@ -5,7 +5,7 @@ require("dotenv").config();
 
 const oauth2Client = new OAuth2(
   process.env.GMAIL_CLIENT_ID,
-  process.env.GMAIL_CLIENT_SECRET, // Client Secret
+  process.env.GMAIL_CLIENT_SECRET,
   process.env.RedirectURL // Redirect URL
 );
 
@@ -26,5 +26,4 @@ const transport = nodemailer.createTransport({
     accessToken: accessToken,
   },
 });
-
 module.exports = transport;

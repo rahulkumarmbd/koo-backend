@@ -46,6 +46,8 @@ app.post("/gmailotp", (req, res) => {
       return Math.round(Number * Math.random());
     }
 
+    
+
     const otp = random(1000000);
 
     const mailOptions = {
@@ -55,14 +57,17 @@ app.post("/gmailotp", (req, res) => {
       html: `<h1>Dear Customer your otp is ${otp}. Please Don't Share with anyone</h1>`, // plain text body
     };
 
+    console.log(transporter);
+
     transporter.sendMail(mailOptions, function (err, info) {
-      if (err) console.log(err);
+      if (err) console.log("err",err);
       else console.log(info);
     });
 
     res.status(201).send({ success: "success", otp });
   } catch (err) {
-    res.status(500).send(err);
+    console.log(err);
+    res.status(400).send(err);
   }
 });
 
