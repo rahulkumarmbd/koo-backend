@@ -60,7 +60,7 @@ app.post("/gmailotp", (req, res) => {
     console.log(transporter);
 
     transporter.sendMail(mailOptions, function (err, info) {
-      if (err) console.log("err",err);
+      if (err) return res.status(201).send(err);
       else console.log(info);
     });
 

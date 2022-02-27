@@ -7,6 +7,16 @@ const userSchema = new mongoose.Schema(
       required: false,
       default: "null",
     },
+    bio: {
+      type: String,
+      required: false,
+      default: "null",
+    },
+    dateOfBirth: {
+      type: String,
+      required: false,
+      default: "null",
+    },
     handle: {
       type: String,
       required: false,
@@ -36,6 +46,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       unique: true,
       required: false,
+      default: "null",
     },
     profilePic: {
       type: String,
@@ -45,19 +56,26 @@ const userSchema = new mongoose.Schema(
     mobileNum: {
       type: Number,
       required: false,
+      default: "null",
     },
     qualification: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "qualification",
+      required: false,
+      default: "null",
     },
     workExperience: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "workExperience",
+      required: false,
+      default: "null",
     },
-    posts: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "post",
-    }],
+    posts: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "post",
+      },
+    ],
   },
   {
     versionKey: false,
