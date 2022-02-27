@@ -56,19 +56,15 @@ const userSchema = new mongoose.Schema(
     mobileNum: {
       type: Number,
       required: false,
-      default: "null",
+      default: 0,
     },
     qualification: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "qualification",
-      required: false,
-      default: "null",
     },
     workExperience: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "workExperience",
-      required: false,
-      default: "null",
     },
     posts: [
       {
