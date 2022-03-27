@@ -2,9 +2,7 @@ const mongoose = require("mongoose")
 
 const connection = () => {
     return mongoose
-      .connect(
-        "mongodb+srv://rahulkumarmbd:kooapp@cluster0.mkikz.mongodb.net/test"
-      )
+      .connect(process.env.MongoProtocolUrl)
       .then(() => {
         console.log("Connected")
       })
